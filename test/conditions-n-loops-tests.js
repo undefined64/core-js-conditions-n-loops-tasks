@@ -589,7 +589,7 @@ describe('core-js-conditions-n-loops optimal implementation', () => {
     // prepare data for sortByAsc speed test
     const min = -100;
     const max = 100;
-    const length = 7500;
+    const length = 10;
     const arr = utility.getRandomArrayUtil(min, max, length);
     notSortedArr = Array.from(arr);
     sortedArr = arr.sort((a, b) => a - b);

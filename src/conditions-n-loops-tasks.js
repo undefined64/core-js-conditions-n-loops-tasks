@@ -366,9 +366,46 @@ function rotateMatrix(/* matrix */) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* arr */) {
-  throw new Error('Not implemented');
+function sortByAsc(arr) {
+  const resultArray = arr;
+  if (arr.length <= 1) {
+    return arr;
+  }
+
+  const pivotIndex = Math.floor(arr.length / 2);
+  const pivot = arr[pivotIndex];
+  const less = [];
+  const larger = [];
+
+  for (let i = 0; i < arr.length; i += 1) {
+    if (i !== pivotIndex) {
+      if (arr[i] < pivot) {
+        less[less.length] = arr[i];
+      } else {
+        larger[larger.length] = arr[i];
+      }
+    }
+  }
+  const result = [...sortByAsc(less), pivot, ...sortByAsc(larger)];
+  for (let i = 0; i < result.length; i += 1) {
+    resultArray[i] = result[i];
+  }
+  return resultArray;
 }
+// сортировка выбором видимо не успевает уложиться в тест :) upd.успевает
+// function sortByAsc(arr) {
+//   const sortedArr = arr;
+//   for (let i = 0; i < sortedArr.length; i += 1) {
+//     let minIndex = i;
+//     for (let j = i + 1; j < sortedArr.length; j += 1) {
+//       if (sortedArr[j] < sortedArr[minIndex]) {
+//         minIndex = j;
+//       }
+//     }
+//     [sortedArr[i], sortedArr[minIndex]] = [sortedArr[minIndex], sortedArr[i]];
+//   }
+//   return sortedArr;
+// }
 
 /**
  * Shuffles characters in a string so that the characters with an odd index are moved to the end of the string at each iteration.
